@@ -3,14 +3,27 @@ const chalk = require("chalk");
 const ascii = require("ascii-table");
 
 async function loadEvents(client) {
-  console.log(chalk.blue("Loading Events.............."));
+  console.log(
+    chalk.blue("\n\nAttempting to Load Events ............................\n")
+  );
   const table = new ascii().setHeading("Events", "Status");
 
   await client.events.clear();
 
   const Files = await loadFiles("Events");
-  Files.forEach((file) => {
+  Files.forEach(async (file) => {
     const event = require(file);
+
+    if (!event.name) {
+      const L = file.split("/");
+      await table.addRow(
+        chalk.red(`${event.name || "MISSING"}`),
+        chalk.red(
+          `⛔ Event name is missing: ${L[L.length - 2] + `/` + L[L.length - 1]}`
+        )
+      );
+      return;
+    }
 
     const execute = (...args) => event.execute(...args, client);
     client.events.set(event.name, execute);
@@ -26,7 +39,10 @@ async function loadEvents(client) {
     table.addRow(event.name, "🟢 Active");
   });
 
-  console.log(table.toString(), chalk.green("\nLoaded Events ✔✔"));
+  console.log(
+    table.toString(),
+    chalk.green("\n\nLoaded Events Successfully ✔✔")
+  );
 }
 
 module.exports = { loadEvents };

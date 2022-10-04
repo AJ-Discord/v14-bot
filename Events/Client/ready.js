@@ -1,3 +1,5 @@
+const { loadCommands } = require("../../Handlers");
+
 module.exports = {
   name: "ready",
   once: "true",
@@ -8,5 +10,7 @@ module.exports = {
         client.guilds.cache.size > 1 ? "guilds" : "guild"
       }`
     );
+
+    loadCommands(client);
   },
 };
