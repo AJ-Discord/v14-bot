@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { connectMongo } = require("./mongoDB");
 const {
   Client,
   GatewayIntentBits,
@@ -18,6 +19,8 @@ client.events = new Collection();
 client.commands = new Collection();
 client.devCommands = new Collection();
 client.developers = process.env.developer_ids;
+
+connectMongo(process.env.databaseURL);
 
 const { loadEvents } = require("./Handlers");
 loadEvents(client);
