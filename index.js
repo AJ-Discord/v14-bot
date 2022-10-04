@@ -16,6 +16,7 @@ const client = new Client({
 
 client.events = new Collection();
 client.commands = new Collection();
+client.devCommands = new Collection();
 client.developers = process.env.developer_ids;
 
 const { loadEvents } = require("./Handlers");
