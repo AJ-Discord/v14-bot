@@ -11,7 +11,10 @@ module.exports = {
   execute(interaction, client) {
     if (!interaction.isChatInputCommand()) return;
 
-    const command = client.commands.get(interaction.commandName);
+    const command =
+      client.commands.get(interaction.commandName) ||
+      client.devCommands.get(interaction.commandName);
+
     if (!command)
       return interaction.reply({
         content: "🔴 This command is outdated",
@@ -25,6 +28,21 @@ module.exports = {
         ephemeral: true,
       });
 
-    command.execute(interaction, client);
+    const subCommand = interaction.options.getSubcommand(false);
+    if (subCommand) {
+      const subCommandFile = client.subCommands.get(
+        `${interaction.commandName}.${subCommand}`
+      );
+
+      if (!subCommandFile)
+        return interaction.reply({
+          content: "🔴 This subCommand is outdated",
+          ephemeral: true,
+        });
+
+      subCommandFile.execute(interaction, client);
+    } else {
+      command.execute(interaction, client);
+    }
   },
 };

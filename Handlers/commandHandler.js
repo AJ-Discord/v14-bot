@@ -11,6 +11,7 @@ async function loadCommands(client) {
   const table = new ascii().setHeading("Commands", "Status");
 
   await client.commands.clear();
+  await client.subCommands.clear();
 
   let PublicGuildCommandsArray = [];
   let DevGuildCommandsArray = [];
@@ -18,28 +19,9 @@ async function loadCommands(client) {
   const Files = await loadFiles("Commands");
   Files.forEach(async (file) => {
     const command = require(file);
-    if (!command.data) {
-      const L = file.split("/");
-      return table.addRow(
-        chalk.red(L[L.length - 1]),
-        chalk.red("🛑 Missing the data")
-      );
-    }
 
-    if (!command.data.name) {
-      const L = file.split("/");
-      return table.addRow(
-        chalk.red(L[L.length - 1]),
-        chalk.red("🛑 Missing a name")
-      );
-    }
-
-    if (!command.data.description) {
-      return table.addRow(
-        chalk.red(command.name),
-        chalk.red("🛑 Missing a description")
-      );
-    }
+    if (command.subCommand)
+      return client.subCommands.set(command.subCommand, command);
 
     if (command.developer) {
       client.devCommands.set(command.data.name, command);

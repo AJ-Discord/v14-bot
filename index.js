@@ -18,6 +18,7 @@ const client = new Client({
 client.events = new Collection();
 client.commands = new Collection();
 client.devCommands = new Collection();
+client.subCommands = new Collection();
 client.developers = process.env.developer_ids;
 
 connectMongo(process.env.databaseURL);
