@@ -17,6 +17,12 @@ async function loadCommands(client) {
   let DevGuildCommandsArray = [];
 
   const Files = await loadFiles("Commands");
+
+  if (Files.length === 0)
+    return console.log(
+      chalk.red("Failed to Load Commands(No commands found)\n")
+    );
+
   Files.forEach(async (file) => {
     const command = require(file);
 

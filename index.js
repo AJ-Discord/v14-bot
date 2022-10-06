@@ -21,6 +21,7 @@ client.devCommands = new Collection();
 client.subCommands = new Collection();
 client.developers = process.env.developer_ids;
 client.buttons = new Collection();
+client.selectMenus = new Collection();
 
 connectMongo(process.env.databaseURL);
 

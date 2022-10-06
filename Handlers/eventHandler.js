@@ -11,6 +11,10 @@ async function loadEvents(client) {
   await client.events.clear();
 
   const Files = await loadFiles("Events");
+
+  if (Files.length === 0)
+    return console.log(chalk.red("Failed to Load Events(No events found)\n"));
+
   Files.forEach(async (file) => {
     const event = require(file);
 

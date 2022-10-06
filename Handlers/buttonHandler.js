@@ -11,6 +11,10 @@ async function loadButtons(client) {
   await client.buttons.clear();
 
   const Files = await loadFiles("Components/Buttons");
+
+  if (Files.length === 0)
+    return console.log(chalk.red("Failed to Load Buttons(No buttons found)\n"));
+
   Files.forEach(async (file) => {
     const button = require(file);
 
