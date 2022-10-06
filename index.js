@@ -20,10 +20,11 @@ client.commands = new Collection();
 client.devCommands = new Collection();
 client.subCommands = new Collection();
 client.developers = process.env.developer_ids;
+client.buttons = new Collection();
 
 connectMongo(process.env.databaseURL);
 
-const { loadEvents } = require("./Handlers");
-loadEvents(client);
+const { loadHandlers } = require("./Handlers");
+loadHandlers(client);
 
 client.login(process.env.bot_token);

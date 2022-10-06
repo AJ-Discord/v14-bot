@@ -4,7 +4,7 @@ const ascii = require("ascii-table");
 
 async function loadEvents(client) {
   console.log(
-    chalk.blue("\n\nAttempting to Load Events ............................\n")
+    chalk.blue("Attempting to Load Events ............................\n")
   );
   const table = new ascii().setHeading("Events", "Status");
 
@@ -41,7 +41,7 @@ async function loadEvents(client) {
 
   console.log(
     table.toString(),
-    chalk.green("\n\nLoaded Events Successfully ✔✔")
+    chalk.green("\n\nLoaded Events Successfully ✔✔\n")
   );
 }
 

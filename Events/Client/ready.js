@@ -1,5 +1,4 @@
 const { ActivityType } = require("discord.js");
-const { loadCommands } = require("../../Handlers");
 
 module.exports = {
   name: "ready",
@@ -18,7 +17,5 @@ module.exports = {
       ],
       status: "online",
     });
-
-    loadCommands(client);
   },
 };
