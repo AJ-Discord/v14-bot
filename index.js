@@ -1,11 +1,6 @@
 require("dotenv").config();
-const { connectMongo } = require("./mongoDB");
-const {
-  Client,
-  GatewayIntentBits,
-  Partials,
-  Collection,
-} = require("discord.js");
+const { connectMongo } = require("./Structures/mongoDB");
+const { Client, GatewayIntentBits, Partials } = require("discord.js");
 
 const { Guilds, GuildMembers, GuildMessages } = GatewayIntentBits;
 const { User, Message, GuildMember, ThreadMember } = Partials;
@@ -15,13 +10,8 @@ const client = new Client({
   partials: [User, Message, GuildMember, ThreadMember],
 });
 
-client.events = new Collection();
-client.commands = new Collection();
-client.devCommands = new Collection();
-client.subCommands = new Collection();
-client.developers = process.env.developer_ids;
-client.buttons = new Collection();
-client.selectMenus = new Collection();
+const { loadCollections } = require("./Structures/Functions/collectionLoader");
+loadCollections(client);
 
 connectMongo(process.env.databaseURL);
 

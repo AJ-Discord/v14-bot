@@ -1,4 +1,4 @@
-const { loadFiles } = require("../Functions/fileLoader");
+const { loadFiles } = require("../Structures/Functions/fileLoader");
 const chalk = require("chalk");
 const ascii = require("ascii-table");
 
@@ -28,6 +28,8 @@ async function loadCommands(client) {
 
     if (command.subCommand)
       return client.subCommands.set(command.subCommand, command);
+
+    if (!command.data) return;
 
     if (command.developer) {
       client.devCommands.set(command.data.name, command);
