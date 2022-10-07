@@ -10,12 +10,9 @@ const client = new Client({
   partials: [User, Message, GuildMember, ThreadMember],
 });
 
-const { loadCollections } = require("./Structures/Functions/collectionLoader");
-loadCollections(client);
-
 connectMongo(process.env.databaseURL);
 
-const { loadHandlers } = require("./Structures/Handlers");
-loadHandlers(client);
+const { loadFunctions } = require("./Structures/Functions");
+loadFunctions(client);
 
 client.login(process.env.bot_token);
