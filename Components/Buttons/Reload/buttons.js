@@ -1,5 +1,5 @@
 const { ButtonInteraction, Client } = require("discord.js");
-const { loadButtons } = require("../../../Handlers");
+const { loadButtons } = require("../../../Structures/Handlers");
 
 module.exports = {
   id: "reload.buttons",

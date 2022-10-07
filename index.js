@@ -15,7 +15,7 @@ loadCollections(client);
 
 connectMongo(process.env.databaseURL);
 
-const { loadHandlers } = require("./Handlers");
+const { loadHandlers } = require("./Structures/Handlers");
 loadHandlers(client);
 
 client.login(process.env.bot_token);

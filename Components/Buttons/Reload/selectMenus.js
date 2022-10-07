@@ -1,8 +1,8 @@
 const { ButtonInteraction, Client } = require("discord.js");
-const { loadCommands } = require("../../../Structures/Handlers");
+const { loadSelectMenus } = require("../../../Structures/Handlers");
 
 module.exports = {
-  id: "reload.commands",
+  id: "reload.menus",
   developer: true,
   permission: "ADMINISTRATOR",
 
@@ -12,7 +12,7 @@ module.exports = {
    * @param {Client} client
    */
   execute(interaction, client) {
-    loadCommands(client);
-    interaction.reply({ content: "Reloaded commands", ephemeral: true });
+    loadSelectMenus(client);
+    interaction.reply({ content: "Reloaded Select Menus", ephemeral: true });
   },
 };

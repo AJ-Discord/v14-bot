@@ -37,10 +37,25 @@ module.exports = {
       .setLabel("Reload Buttons")
       .setStyle(ButtonStyle.Primary);
 
-    const Buttons = new ActionRowBuilder().addComponents(
+    const selectMenuBtn = new ButtonBuilder()
+      .setCustomId("reload.menus")
+      .setLabel("Reload Select Menus")
+      .setStyle(ButtonStyle.Primary);
+
+    const modalBtn = new ButtonBuilder()
+      .setCustomId("reload.modals")
+      .setLabel("Reload Modals")
+      .setStyle(ButtonStyle.Primary);
+
+    const Buttons1 = new ActionRowBuilder().addComponents(
       commandBtn,
       eventBtn,
       buttonBtn
+    );
+
+    const Buttons2 = new ActionRowBuilder().addComponents(
+      selectMenuBtn,
+      modalBtn
     );
 
     const embed = new EmbedBuilder()
@@ -52,7 +67,7 @@ module.exports = {
 
     await interaction.reply({
       embeds: [embed],
-      components: [Buttons],
+      components: [Buttons1, Buttons2],
       ephemeral: true,
     });
   },
