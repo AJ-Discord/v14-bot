@@ -17,8 +17,6 @@ module.exports = async (client) => {
 
       fs.writeFile("./Structures/emojis.json", emojiList, (err) => {
         if (err) throw err;
-
-        console.log("New data added");
       });
     }, 10 * 1000);
   }

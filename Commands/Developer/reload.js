@@ -47,6 +47,11 @@ module.exports = {
       .setLabel("Reload Modals")
       .setStyle(ButtonStyle.Primary);
 
+    const allBtn = new ButtonBuilder()
+      .setCustomId("reload.all")
+      .setLabel("Reload Everything")
+      .setStyle(ButtonStyle.Primary);
+
     const Buttons1 = new ActionRowBuilder().addComponents(
       commandBtn,
       eventBtn,
@@ -55,7 +60,8 @@ module.exports = {
 
     const Buttons2 = new ActionRowBuilder().addComponents(
       selectMenuBtn,
-      modalBtn
+      modalBtn,
+      allBtn
     );
 
     const embed = new EmbedBuilder()

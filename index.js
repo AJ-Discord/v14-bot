@@ -2,12 +2,9 @@ require("dotenv").config();
 const { connectMongo } = require("./Structures/mongoDB");
 const { Client, GatewayIntentBits, Partials } = require("discord.js");
 
-const { Guilds, GuildMembers, GuildMessages } = GatewayIntentBits;
-const { User, Message, GuildMember, ThreadMember } = Partials;
-
 const client = new Client({
-  intents: [Guilds, GuildMembers, GuildMessages],
-  partials: [User, Message, GuildMember, ThreadMember],
+  intents: Object.keys(GatewayIntentBits),
+  partials: Object.keys(Partials),
 });
 
 connectMongo(process.env.databaseURL);
